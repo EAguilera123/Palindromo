@@ -7,12 +7,25 @@ public class Main {
 
     }
     public static boolean esPalindromo(String cadena) {
-        cadena = cadena.replaceAll("\\s+", "").toLowerCase();
+        if (cadena == null) {
+            return false;
+        }
 
-        StringBuilder reversed = new StringBuilder(cadena);
+        // Normalizar la cadena: eliminar espacios y convertir a minúsculas
+        cadena = cadena.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        reversed.reverse();
+        int inicio = 0;
+        int fin = cadena.length() - 1;
 
-        return cadena.equals(reversed.toString());
+        // Comparar caracteres desde los extremos hacia el centro
+        while (inicio < fin) {
+            if (cadena.charAt(inicio) != cadena.charAt(fin)) {
+                return false;
+            }
+            inicio++;
+            fin--;
+        }
+
+        return true;
     }
 }
